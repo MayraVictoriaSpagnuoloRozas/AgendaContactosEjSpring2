@@ -1,6 +1,6 @@
 package com.example.AgendaContactosEjSpring2.servicio;
 
-import com.example.AgendaContactosEjSpring2.Dto.ContactoRegistroDto;
+import com.example.AgendaContactosEjSpring2.Dto.UsuarioRegistroDto;
 import com.example.AgendaContactosEjSpring2.Entidad.Contacto;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
@@ -22,5 +22,5 @@ public interface ContactoServicio extends UserDetailsService {
     //Arrays.asList(new Rol("ROLE_USER")) y que tenga un menú para elegir rol? y que tenga diferentes autenticaciones
     // de acceso según el mismo?
 
-    public ContactoRegistroDto retornarNuevoUsuarioRegistroDTO();
+    public UsuarioRegistroDto retornarNuevoUsuarioRegistroDTO();
 }

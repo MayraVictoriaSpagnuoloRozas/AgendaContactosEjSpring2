@@ -1,8 +1,7 @@
 package com.example.AgendaContactosEjSpring2.servicio;
 
-import com.example.AgendaContactosEjSpring2.Dto.ContactoRegistroDto;
+import com.example.AgendaContactosEjSpring2.Dto.UsuarioRegistroDto;
 import com.example.AgendaContactosEjSpring2.Entidad.Contacto;
-import com.example.AgendaContactosEjSpring2.Entidad.Roles;
 import com.example.AgendaContactosEjSpring2.Repositorio.ContactoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,7 +9,6 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
 import java.util.List;
 
  @Service
@@ -51,7 +49,7 @@ import java.util.List;
      }
 
      @Override
-     public ContactoRegistroDto retornarNuevoUsuarioRegistroDTO() {
+     public UsuarioRegistroDto retornarNuevoUsuarioRegistroDTO() {
          return null;
      }
 

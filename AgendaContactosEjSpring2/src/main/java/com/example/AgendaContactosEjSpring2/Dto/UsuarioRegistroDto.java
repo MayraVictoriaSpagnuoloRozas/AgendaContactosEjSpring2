@@ -1,18 +1,16 @@
 package com.example.AgendaContactosEjSpring2.Dto;
 
-import javax.persistence.Entity;
-
 //reduce cantidad de datos transmitidos, capa de abstracción entre entidades de dominio y capas externas
 // se usa para autenticar usuarios/ puedo ponerle solo nombre y password y que tenga acceso según rol?
 
-public class ContactoRegistroDto {
+public class UsuarioRegistroDto {
     private long id;
     private String nombre;//aca le pondria rol
     private int celular;//sacaria esto
     private String email;// sacaria esto
     private String password;
 
-    public ContactoRegistroDto(long id, String nombre, int celular, String email, String password) {
+    public UsuarioRegistroDto(long id, String nombre, int celular, String email, String password) {
         this.id = id;
         this.nombre = nombre;
         this.celular = celular;
@@ -20,11 +18,15 @@ public class ContactoRegistroDto {
         this.password = password;
     }
 
-    public ContactoRegistroDto(String nombre, int celular, String email, String password) {
+    public UsuarioRegistroDto(String nombre, int celular, String email, String password) {
         this.nombre = nombre;
         this.celular = celular;
         this.email = email;
         this.password = password;
+    }
+
+    public UsuarioRegistroDto() {
+
     }
 
     public long getId() {

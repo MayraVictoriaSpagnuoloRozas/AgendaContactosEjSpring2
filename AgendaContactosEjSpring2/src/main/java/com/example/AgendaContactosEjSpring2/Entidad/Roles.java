@@ -8,7 +8,7 @@ public class Roles {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     private String nombre;
 
     public Roles(Long id, String nombre) {

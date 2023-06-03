@@ -1,6 +1,6 @@
 package com.example.AgendaContactosEjSpring2.Controlador;
 
-import com.example.AgendaContactosEjSpring2.Dto.ContactoRegistroDto;
+import com.example.AgendaContactosEjSpring2.Dto.UsuarioRegistroDto;
 import com.example.AgendaContactosEjSpring2.Entidad.Contacto;
 import com.example.AgendaContactosEjSpring2.servicio.ContactoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +23,9 @@ public class ContactoControlador {
     //@RequestMapping estaria llamando a los metodos del controlador luego de tomar una peticin de la vista
     @GetMapping("/")
     public String verPaginaDeInicio(Model modelo) {//ModelMap pasa variables del controlador a nuestro html
-        List<Contacto> contactos = contactoServicio.listarTodosLosContactos();
+        List<Contacto> contacto = contactoServicio.listarTodosLosContactos();
 
-        modelo.addAttribute("contactos", contactos);//addAtribute manda 2 argumentos, el identificador
+        modelo.addAttribute("contactos", contacto);//addAtribute manda 2 argumentos, el identificador
         //que coincide con el Thymeleaf y el objeto que queremos mandar por html
         return "index";// en el index me va a aparecer asi: th:text=”${nombre}”
     }
@@ -71,9 +71,8 @@ public class ContactoControlador {
         }
 
         contactoDB.setNombre(contacto.getNombre());
-        contactoDB.setCelular(contacto.getCelular());
-        contactoDB.setEmail(contacto.getEmail());
-        contactoDB.setFechaCumpleaños(contacto.getFechaCumpleaños());
+        contactoDB.setTelefono(contacto.getTelefono());
+
 
         contactoServicio.guardarContacto(contactoDB);
         redirect.addFlashAttribute("msgExito", "El contacto " +
@@ -86,7 +85,7 @@ public class ContactoControlador {
     public String eliminarContacto(@PathVariable Long id,RedirectAttributes redirect) {
         Contacto contacto = contactoServicio.obtenerContactoPorId(id);
 
-        contactoServicio.eliminarContacto(contacto.getId());
+        contactoServicio.eliminarContacto((long) contacto.getId());
 
         redirect.addFlashAttribute("msgExito", "El contacto ha " +
                 "sido eliminado correctamente");
@@ -95,7 +94,8 @@ public class ContactoControlador {
     }
 
     @ModelAttribute("contacto")
-    public UsuarioRegistroDto retornarNuevoUsuarioRegistroDTO() {
+    public UsuarioRegistroDto retornarNuevoUsuarioRegistroDto() {
+
         return new UsuarioRegistroDto();
     }
     }
