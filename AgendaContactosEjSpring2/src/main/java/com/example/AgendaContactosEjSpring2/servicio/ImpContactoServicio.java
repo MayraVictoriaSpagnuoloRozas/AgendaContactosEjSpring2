@@ -15,9 +15,9 @@ import java.util.List;
  public class ImpContactoServicio implements ContactoServicio, UserDetailsService {
 
 
-
      @Autowired
      private ContactoRepositorio repositorio;
+
 
      @Override
      public List<Contacto> listarTodosLosContactos() {

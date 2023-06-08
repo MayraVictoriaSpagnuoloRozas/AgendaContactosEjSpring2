@@ -2,6 +2,7 @@ package com.example.AgendaContactosEjSpring2.Seguridad;
 
 
 import com.example.AgendaContactosEjSpring2.servicio.ContactoServicio;
+import com.example.AgendaContactosEjSpring2.servicio.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,21 +17,20 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 @Configuration// especifica que secciones estan habilitadas y cuales no
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+   // @Autowired
+    //private ContactoServicio contactoServicio;
+    // --No es de ContactoServicio, es de UsuarioServicio
+
     @Autowired
-    private ContactoServicio contactoServicio;
-
-
-    // donde pongo /*admin  /*user   /* (resto)?
-
-    //public interface UserDetailsService {
-    //UserDetails loadUserByUsername(String username) throws UsernameNotFoundException;
-    //} Tengo que crear esta interface???
+    private UsuarioServicio usuarioServicio;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 
-        auth.userDetailsService(contactoServicio);
+        auth.userDetailsService(usuarioServicio);
     }
+
     @Bean
     public BCryptPasswordEncoder passwordEncoder(){
 
@@ -40,11 +40,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider authenticationProvider(){
         DaoAuthenticationProvider auth = new DaoAuthenticationProvider();
-        auth.setUserDetailsService(contactoServicio);
+        auth.setUserDetailsService(usuarioServicio);
         auth.setPasswordEncoder(passwordEncoder());
         return auth;
     }
-
 
 
     @Override
